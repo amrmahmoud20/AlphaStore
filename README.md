@@ -1,5 +1,5 @@
 # Alphastore
-Welcome to ***Alphastore*** Functional Component React app, a modern and ***responsive*** online shopping website built with the latest web technologies and designed to provide a seamless and enjoyable shopping experience for users. With a clean and intuitive user  interface and ***filtering options***.
+***Alphastore*** Functional Component React app, a modern and ***responsive*** online shopping website built with the latest web technologies and designed to provide a seamless and enjoyable shopping experience for users. With a clean and intuitive user  interface and ***filtering options***.
 
 **The project has been deployed in cloudflare _[Alphastore](https://alphastore.pages.dev/)_**.
 ## Screenshots
@@ -18,7 +18,7 @@ Welcome to ***Alphastore*** Functional Component React app, a modern and ***resp
 ### Technologies
 - State management `Redux-toolkit`
 - React-router-dom
--  Axios
+- Axios
 - SASS
 - Bootstrap ( React-bootstrap )
 - Material UI
