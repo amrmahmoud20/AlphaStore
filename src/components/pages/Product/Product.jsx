@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import "./_products.scss";
@@ -11,6 +11,7 @@ import BalanceIcon from "@mui/icons-material/Balance";
 import useFetch from "../../../hooks/use-fetch";
 
 import { addToCart } from "../../../store/slices/cartSlice";
+import Loading from "../../UI/Loading/Loading";
 
 const Product = () => {
   const [selectedImg, setSelectedImg] = useState("img");
@@ -26,15 +27,7 @@ const Product = () => {
   return (
     <div className="container-fluid product">
       {isLoading ? (
-        <div className="d-flex justify-content-center w-100 text-primary my-5">
-          <div
-            className="spinner-border fs-3"
-            style={{ width: "3rem", height: "3rem" }}
-            role="status"
-          >
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        </div>
+        <Loading />
       ) : (
         <>
           <div className="left">

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Card from "../../../../UI/Card/Card";
 import useFetch from "../../../../../hooks/use-fetch";
-import IsLoadingCard from "../../../../UI/Card/IsLoadingCard";
+import IsLoading from "../../../../UI/Card/IsLoadingCard";
 
 const FeaturedProducts = ({ type }) => {
   const { data, isLoading, error } = useFetch(
@@ -31,7 +31,7 @@ const FeaturedProducts = ({ type }) => {
           {error ? (
             "Something went wrong!"
           ) : isLoading ? (
-            <IsLoadingCard />
+            <IsLoading />
           ) : (
             data.map((item) => <Card item={item} key={item.id} />)
           )}

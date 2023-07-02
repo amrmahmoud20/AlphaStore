@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../Card/Card";
 import useFetch from "../../../hooks/use-fetch";
-import IsLoadingCard from "../Card/IsLoadingCard";
+import IsLoading from "../Card/IsLoadingCard";
 
 const List = ({ maxPrice, sort, subCats, catId }) => {
   // Filtering the data
@@ -21,7 +21,7 @@ const List = ({ maxPrice, sort, subCats, catId }) => {
           {error ? (
             "Something went wrong!"
           ) : isLoading ? (
-            <IsLoadingCard />
+            <IsLoading />
           ) : (
             data.map((item) => <Card item={item} key={item.id} />)
           )}
