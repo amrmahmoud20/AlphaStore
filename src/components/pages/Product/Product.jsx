@@ -11,8 +11,13 @@ import BalanceIcon from "@mui/icons-material/Balance";
 
 import useFetch from "../../../hooks/use-fetch";
 
-import { addToCart } from "../../../store/slices/cartSlice";
+import {
+  addToCart,
+  decrememnt,
+  increment,
+} from "../../../store/slices/cartSlice";
 import Loading from "../../UI/Loading/Loading";
+import { MDBCol } from "mdb-react-ui-kit";
 
 const Product = () => {
   const [selectedImg, setSelectedImg] = useState("img");
@@ -27,7 +32,7 @@ const Product = () => {
   const mainImg =
     data?.attributes && data?.attributes[selectedImg]?.data?.attributes?.url;
 
-  const onClickHandler = () => {
+  const addToCartOnClickHandler = () => {
     dispatch(
       addToCart({
         id: data.id,
@@ -90,7 +95,7 @@ const Product = () => {
                     disabled={existingProduct ? true : false}
                     className="btn btn-outline-primary"
                     type="button"
-                    onClick={onClickHandler}
+                    onClick={addToCartOnClickHandler}
                   >
                     <span>
                       <AddShoppingCartIcon />
@@ -98,6 +103,36 @@ const Product = () => {
                     add to cart
                   </button>
                 </div>
+                <MDBCol
+                  md="1"
+                  lg="1"
+                  xl="1"
+                  className="d-flex align-items-center justify-content-center  m-3"
+                >
+                  <div className="quantity d-flex justify-content-center align-items-center gap-1">
+                    <button
+                      className="btn"
+                      onClick={() => dispatch(decrememnt(existingProduct))}
+                    >
+                      <i
+                        className="fa-solid fa-minus fa-sm"
+                        style={{ color: "#2879fe" }}
+                      ></i>
+                    </button>
+                    <span>
+                      {existingProduct ? existingProduct.quantity : 0}
+                    </span>
+                    <button
+                      className="btn"
+                      onClick={() => dispatch(increment(existingProduct))}
+                    >
+                      <i
+                        className="fa-solid fa-plus fa-sm"
+                        style={{ color: "#2879fe" }}
+                      ></i>
+                    </button>
+                  </div>
+                </MDBCol>
 
                 <div className="link">
                   <div className="item">

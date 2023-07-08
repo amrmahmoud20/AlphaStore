@@ -55,7 +55,9 @@ const Cart = () => {
               <div className="details">
                 <h6>{pro.title}</h6>
                 <p className="desc">{pro.desc.substring(0, 100)}</p>
-                <p className="price">${pro.price.toFixed(2)}</p>
+                <p className="price">
+                  {pro.quantity} x ${pro.price.toFixed(2)}
+                </p>
               </div>
               <button
                 type="button"
