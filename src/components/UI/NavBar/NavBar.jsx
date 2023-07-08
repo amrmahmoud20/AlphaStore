@@ -34,6 +34,20 @@ const Accounts = () => (
   </div>
 );
 
+const CartIcon = ({ products }) => (
+  <div className="cartIcon">
+    <button
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasRight"
+      aria-controls="offcanvasRight"
+    >
+      <ShoppingCartOutlinedIcon />
+    </button>
+    <span>{products.length}</span>
+  </div>
+);
+
 const NavBar = () => {
   const navImg = useSelector((state) => state.allImages.navBarImg.navImg);
   const products = useSelector((state) => state.cart.products);
@@ -59,17 +73,7 @@ const NavBar = () => {
 
           <ul className="navbar-nav collapse-icon w-25">
             <li className="nav-item collapse-cartIcon">
-              <div className="cartIcon">
-                <button
-                  type="button"
-                  data-bs-toggle="offcanvas"
-                  data-bs-target="#offcanvasRight"
-                  aria-controls="offcanvasRight"
-                >
-                  <ShoppingCartOutlinedIcon />
-                </button>
-                <span>{products.length}</span>
-              </div>
+              <CartIcon products={products} />
             </li>
           </ul>
 
@@ -152,17 +156,7 @@ const NavBar = () => {
                 >
                   <PersonOutlineIcon />
                 </button>
-                <div className="cartIcon">
-                  <button
-                    type="button"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasRight"
-                    aria-controls="offcanvasRight"
-                  >
-                    <ShoppingCartOutlinedIcon />
-                  </button>
-                  <span>{products.length}</span>
-                </div>
+                <CartIcon products={products} />
               </li>
             </ul>
           </div>

@@ -89,9 +89,9 @@ const MainCart = () => {
                             xl="3"
                             className="d-flex align-items-center justify-content-center"
                           >
-                            <div className="quantity">
+                            <div className="quantity d-flex justify-content-center align-items-center gap-1">
                               <button
-                                className="btn border-0"
+                                className="btn"
                                 onClick={() => dispatch(decrememnt(pro))}
                               >
                                 <i
@@ -101,7 +101,7 @@ const MainCart = () => {
                               </button>
                               <span>{pro.quantity}</span>
                               <button
-                                className="btn border-0"
+                                className="btn"
                                 onClick={() => dispatch(increment(pro))}
                               >
                                 <i

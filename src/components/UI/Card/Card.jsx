@@ -6,7 +6,9 @@ import "./_card.scss";
 const Card = ({ item }) => {
   return (
     <div className="col">
-      <div className="card featured-card w-100">
+      <div
+        className={`card featured-card w-100 animate__animated animate__fadeIn`}
+      >
         <Link to={`/product/${item?.id}`}>
           <div className="image">
             {item?.attributes?.isNew && <span>New Season</span>}

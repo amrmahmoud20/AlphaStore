@@ -8,6 +8,7 @@ div.product {
     flex: 1;
     gap: 20px;
     border-radius: 5px;
+    animation: fadeInLeft 1s;
 
     img {
       width: 100%;
@@ -34,7 +35,12 @@ div.product {
 
   div.right {
     flex: 1;
-
+    div.right-top {
+      animation: fadeInDown 1s;
+    }
+    div.right-bottom {
+      animation: fadeInUp 1s;
+    }
     h2 {
       font-weight: bold;
       text-transform: capitalize;
@@ -50,7 +56,7 @@ div.product {
       margin: 20px 0;
     }
 
-    form {
+    div.btn-group {
       button {
         text-transform: uppercase;
         display: flex;
@@ -60,6 +66,9 @@ div.product {
         font-weight: 600;
         span {
           margin-left: 10px;
+        }
+        &:focus {
+          animation: bounceIn 0.5s;
         }
       }
     }
@@ -112,7 +121,17 @@ div.product {
     display: flex;
     flex-direction: column;
 
+    div.left {
+      animation: fadeInDown 1s;
+    }
+
     div.right {
+      div.right-top {
+        animation: fadeInUp 1s;
+      }
+      div.right-bottom {
+        animation: fadeInUp 1s;
+      }
       margin: 0 100px;
       display: flex;
       flex-direction: column;
@@ -144,7 +163,7 @@ div.product {
         }
       }
 
-      form {
+      div.btn-group {
         width: 100%;
         button {
           width: 100%;

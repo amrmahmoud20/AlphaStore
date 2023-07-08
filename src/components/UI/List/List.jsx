@@ -23,7 +23,7 @@ const List = ({ maxPrice, sort, subCats, catId }) => {
           ) : isLoading ? (
             <IsLoading />
           ) : (
-            data.map((item) => <Card item={item} key={item.id} />)
+            data.map((item, nl) => <Card item={item} key={item.id + nl} />)
           )}
         </div>
       </div>

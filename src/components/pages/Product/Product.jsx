@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 import "./_products.scss";
 
@@ -15,6 +16,8 @@ import Loading from "../../UI/Loading/Loading";
 
 const Product = () => {
   const [selectedImg, setSelectedImg] = useState("img");
+  const products = useSelector((state) => state.cart.products);
+
   const dispatch = useDispatch();
 
   const id = useParams().id;
@@ -24,85 +27,110 @@ const Product = () => {
   const mainImg =
     data?.attributes && data?.attributes[selectedImg]?.data?.attributes?.url;
 
-  return (
-    <div className="container-fluid product">
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <>
-          <div className="left">
-            <div className="images">
-              <img
-                src={data?.attributes?.img?.data?.attributes?.url}
-                alt="pro1"
-                onClick={() => setSelectedImg("img")}
-              />
-              <img
-                src={data?.attributes?.img2?.data?.attributes?.url}
-                alt="pro2"
-                onClick={() => setSelectedImg("img2")}
-              />
-            </div>
-            <div className="mainImg">
-              <img src={mainImg} alt="selcImg" />
-            </div>
-          </div>
-          <div className="right">
-            <h2>{data?.attributes?.title}</h2>
-            <h4>${data?.attributes?.price.toFixed(2)}</h4>
-            <p>{data?.attributes?.desc}</p>
+  const onClickHandler = () => {
+    dispatch(
+      addToCart({
+        id: data.id,
+        title: data.attributes.title,
+        desc: data.attributes.desc,
+        price: data.attributes.price,
+        img: data.attributes.img.data.attributes.url,
+        quantity: 1,
+      })
+    );
+    toast.success("Product Added!", {
+      style: {
+        border: "1px solid #2879fe",
+        fontSize: "20px",
+        padding: "20px",
+        color: "#2879fe",
+      },
+      iconTheme: {
+        primary: "#2879fe",
+        secondary: "#FFFAEE",
+      },
+      position: "bottom-right",
+    });
+  };
 
-            {/* /////////////////////////// */}
-            <form onSubmit={(e) => e.preventDefault()}>
-              <button
-                className="btn btn-outline-primary"
-                type="submit"
-                onClick={() =>
-                  dispatch(
-                    addToCart({
-                      id: data.id,
-                      title: data.attributes.title,
-                      desc: data.attributes.desc,
-                      price: data.attributes.price,
-                      img: data.attributes.img.data.attributes.url,
-                      quantity: 1,
-                    })
-                  )
-                }
-              >
-                <span>
-                  <AddShoppingCartIcon />
-                </span>
-                add to cart
-              </button>
-            </form>
-            <div className="link">
-              <div className="item">
-                <FavoriteBorderIcon />
-                add to wishlist
+  const existingProduct = products.find((product) => product.id === data.id);
+
+  return (
+    <>
+      <div className="container-fluid product ">
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            <div className="left">
+              <div className="images">
+                <img
+                  src={data?.attributes?.img?.data?.attributes?.url}
+                  alt="pro1"
+                  onClick={() => setSelectedImg("img")}
+                />
+                <img
+                  src={data?.attributes?.img2?.data?.attributes?.url}
+                  alt="pro2"
+                  onClick={() => setSelectedImg("img2")}
+                />
               </div>
-              <div className="item">
-                <BalanceIcon />
-                add to compare
+              <div className="mainImg">
+                <img src={mainImg} alt="selcImg" />
               </div>
             </div>
-            <div className="info">
-              <span>vendor: polo</span>
-              <span>Product Type: T-Shirt</span>
-              <span>Tag: T-Shirt, Men, Top</span>
+            <div className="right">
+              <div className="right-top">
+                <h2>{data?.attributes?.title}</h2>
+                <h4>${data?.attributes?.price.toFixed(2)}</h4>
+                <p>{data?.attributes?.desc}</p>
+
+                <div className="btn-group">
+                  <button
+                    disabled={existingProduct ? true : false}
+                    className="btn btn-outline-primary"
+                    type="button"
+                    onClick={onClickHandler}
+                  >
+                    <span>
+                      <AddShoppingCartIcon />
+                    </span>
+                    add to cart
+                  </button>
+                </div>
+
+                <div className="link">
+                  <div className="item">
+                    <FavoriteBorderIcon />
+                    add to wishlist
+                  </div>
+                  <div className="item">
+                    <BalanceIcon />
+                    add to compare
+                  </div>
+                </div>
+              </div>
+              <div className="right-bottom">
+                <div className="info">
+                  <span>vendor: polo</span>
+                  <span>Product Type: T-Shirt</span>
+                  <span>Tag: T-Shirt, Men, Top</span>
+                </div>
+                <hr />
+                <div className="details">
+                  <span>DESCRIPTION</span>
+                  <hr />
+                  <span>ADDITIONAL INFORMATION</span>
+                  <hr />
+                  <span>FAQ</span>
+                </div>
+              </div>
             </div>
-            <hr />
-            <div className="details">
-              <span>DESCRIPTION</span>
-              <hr />
-              <span>ADDITIONAL INFORMATION</span>
-              <hr />
-              <span>FAQ</span>
-            </div>
-          </div>
-        </>
-      )}
-    </div>
+          </>
+        )}
+        <Toaster />
+      </div>
+    </>
   );
 };
 

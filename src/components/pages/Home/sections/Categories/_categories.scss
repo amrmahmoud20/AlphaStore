@@ -15,15 +15,7 @@ div.categorie {
     img {
       object-fit: cover;
     }
-    &:hover {
-      span {
-        color: white;
-        background-color: teal;
-        letter-spacing: 4px;
-        -webkit-transition: all 0.5s ease-out;
-        transition: all 0.5s ease-out;
-      }
-    }
+
     span {
       z-index: 5;
       background-color: #ffffff85;
@@ -34,6 +26,14 @@ div.categorie {
       padding: 3px 10px;
       cursor: pointer;
       width: 5px;
+      transition: all 0.3s ease-out;
+    }
+    &:hover {
+      span {
+        color: white;
+        background-color: teal;
+        letter-spacing: 4px;
+      }
     }
   }
 }

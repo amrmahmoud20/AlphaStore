@@ -35,6 +35,7 @@
       font-weight: 500;
       font-size: 12px;
       border-radius: 5px;
+      font-weight: bold;
     }
   }
   h2 {
@@ -43,7 +44,7 @@
     margin: 10px 0;
     text-transform: capitalize;
   }
-  .prices {
+  div.prices {
     display: flex;
     gap: 20px;
 
@@ -56,5 +57,9 @@
         text-decoration: line-through;
       }
     }
+  }
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.059);
   }
 }
